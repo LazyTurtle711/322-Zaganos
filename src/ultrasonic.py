@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from gpiozero import DistanceSensor
+# from gpiozero import DistanceSensor
 import time
 import sys
 import signal
@@ -11,21 +11,20 @@ def signal_handler(signal, frame):
 signal.signal(signal.SIGINT, signal_handler)
 
 # echo = 17, trig = 27
-sensor = DistanceSensor(echo=17, trigger=27, max_distance=2.0)  # max 2 meters
+# DistanceSensor(echo=17, trigger=27, max_distance=2.0)  # max 2 meters
 
-time.sleep(0.5)
-print('-----------------------------------------------------------------sonar start')
+def getDistance(sensor):
+    # time.sleep(0.5)
+    # print('sonar start')
 
-try:
-    while True:
-        distance = sensor.distance * 100  # convert to cm
-        if distance == 0 or distance > 300:
-            print('out of range')
-        else:
-            print('Distance : %.3f cm' % distance)
-        time.sleep(0.1)
-except (KeyboardInterrupt, SystemExit):
-    sys.exit(0)
+    distance = sensor.distance * 100  # convert to cm
+    if distance == 0 or distance > 300:
+        print('out of range')
+        return None
+    else:
+        print('Distance : %.3f cm' % distance)
+        return distance
+    # time.sleep(0.1)
     
     
 '''

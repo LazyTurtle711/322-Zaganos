@@ -96,7 +96,7 @@ class MPU6050:
         Yaw is the "heading" or compass direction.
         """
         self._update_angles()  # Refresh all angle calculations
-        return self.yaw_angle
+        return self.yaw_angle * -1
 
     def pitch(self):
         """
