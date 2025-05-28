@@ -82,26 +82,26 @@ The chassis is built using a custom frame made from PETG. We designed it to supp
 
 This bottom layer includes:
 
-*The DC motor and full drivetrain system
-*Wheels, gears, and axles
-*Ultrasonic sensors with servos for real-time wall detection
+* The DC motor and full drivetrain system
+* Wheels, gears, and axles
+* Ultrasonic sensors with servos for real-time wall detection
 
 2️⃣ Level 2 – Electronics
 
 This second layer includes:
 
 *Our PDH
-*A prototype perfboard for expansion
-*All of our electronics
+* A prototype perfboard for expansion
+* All of our electronics
 
 3️⃣ Level 3 – Processing, Vision and Controllers
 
 This third layer includes:
 
-*Our Raspberry Pi 5 runs the high-level code and processes image data
-*The Pixy2 camera is mounted with a servo here for top-view vision
-*Our servo controller 
-*The DC motors ESC
+* Our Raspberry Pi 5 runs the high-level code and processes image data
+* The Pixy2 camera is mounted with a servo here for top-view vision
+* Our servo controller 
+* The DC motors ESC
 
 🚗 Drivetrain
 
