@@ -90,7 +90,7 @@ This bottom layer includes:
 
 This second layer includes:
 
-* Our PDH
+* Our Voltage Regulator
 * A prototype perfboard for expansion
 * All of our electronics
 
@@ -198,9 +198,15 @@ This mechanism enables the robot to stay on course and follow the traffic rules 
 | Raspberry Pi 5    | 1        | \_\_\_          | \_\_\_     |
 | PixyCam v2        | 1        | \_\_\_          | \_\_\_     |
 | 3D Filament (PLA) | 1 kg     | \_\_\_          | \_\_\_     |
-| \_\_\_            | \_\_\_   | \_\_\_          | \_\_\_     |
-| \_\_\_            | \_\_\_   | \_\_\_          | \_\_\_     |
-| \_\_\_            | \_\_\_   | \_\_\_          | \_\_\_     |
+| Battery           | 1        | \_\_\_          | \_\_\_     |
+| Voltage Regulator | 1        | \_\_\_          | \_\_\_     |
+| Mosfet            | 1        | \_\_\_          | \_\_\_     |
+| ESC               | 1        | \_\_\_          | \_\_\_     |
+| Motor             | 1        | \_\_\_          | \_\_\_     |
+| Gyro              | 1        | \_\_\_          | \_\_\_     |
+| Servo             | 7        | \_\_\_          | \_\_\_     |
+| Servo Driver      | 1        | \_\_\_          | \_\_\_     |
+| ADC               | 4        | \_\_\_          | \_\_\_     |
 | **Total**         |          |                 | **\_\_\_** |
 
 ---
