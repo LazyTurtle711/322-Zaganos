@@ -167,6 +167,8 @@ This mechanism enables the robot to stay on course and follow the traffic rules 
 | PixyCam v2        | 1        | \_\_\_          | \_\_\_     |
 | 3D Filament (PLA) | 1 kg     | \_\_\_          | \_\_\_     |
 | \_\_\_            | \_\_\_   | \_\_\_          | \_\_\_     |
+| \_\_\_            | \_\_\_   | \_\_\_          | \_\_\_     |
+| \_\_\_            | \_\_\_   | \_\_\_          | \_\_\_     |
 | **Total**         |          |                 | **\_\_\_** |
 
 ---
