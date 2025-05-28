@@ -84,10 +84,16 @@ This setup gives us precise obstacle handling and reliable performance in autono
 | Component         | Specification         | Function                      |
 | ----------------- | --------------------- | ----------------------------- |
 | Raspberry Pi 5    | 8 GB RAM, 1.8 GHz CPU | Main controller               |
-| PixyCam v2        | 60 FPS, color-based   | Traffic sign & line detection |
-| Battery           | \_\_\_                | \_\_\_                        |
-| Voltage Regulator | \_\_\_                | \_\_\_                        |
-| PCB / Wiring      | \_\_\_                | \_\_\_                        |
+| PixyCam v2        | 60 FPS, color-based   | Traffic sign detection |
+| Battery           | 2S 5000mAh 60C Li-Po                | Supplies vehicle with 7.4V                        |
+| Voltage Regulator | LM2596 5V 3A step-down voltage regulator              | Provides 5V to logic level components                        |
+| Mosfet          | IRLZ44N                | Turns the ESC on/off                       |
+| ESC           | Quicrun 10BL60 G2 60amp ESC                | Allows control over the motor with RPI 5                        |
+| Motor           | Quicrun 3660SL-3700KV-D5.0-G2                | Provides power to wheels                        |
+| ADC           | ADS1115               | Allows analog inputs                        |
+| Gyro           | MPU6050                | Provides rotational data                        |
+| Servo           | MG90S               | Allows high-precision control over robot                        |
+| Servo Driver           | PCA9685               | Allows control over multiple servos                        |
 
 ---
 
