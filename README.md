@@ -73,9 +73,34 @@ This setup gives us precise obstacle handling and reliable performance in autono
 
 ### ⚙️ Chassis & Drivetrain
 
-* **Chassis:** \_\_\_ (e.g., 3D-printed, material)
-* **Drive System:** \_\_\_ (e.g., differential, omni wheels)
-* **Steering:** \_\_\_ (e.g., servo-based parallelogram link)
+🧱 Chassis
+The chassis is built using a custom frame made from PETG. We designed it to support three levels using spacers between each layer. It keeps everything compact and organized while making sure all the components are easy to access for adjustments or upgrades.
+
+🔽 3 Levels – What’s on Each One
+
+1️⃣ Level 1 – Drive Base & Sensors
+This bottom layer includes:
+*The DC motor and full drivetrain system
+*Wheels, gears, and axles
+*Ultrasonic sensors with servos for real-time wall detection
+
+2️⃣ Level 2 – Electronics
+This second layer includes:
+*Our PDH
+*A prototype perfboard for expansion
+*All of our electronics
+
+3️⃣ Level 3 – Processing, Vision and Controllers
+This third layer includes:
+*Our Raspberry Pi 5 runs the high-level code and processes image data
+*The Pixy2 camera is mounted with a servo here for top-view vision
+*Our servo controller 
+*The DC motors ESC
+
+🚗 Drivetrain
+We are using a high-torque brushed DC motor (you’ll see it in the back, with the red end cap). Power goes through a gear reduction system and is transferred using bevel and spur gears. It drives both front and rear wheels via shafts, so it’s a kind of 4-wheel-drive layout. The drivetrain is compact, and we’ve geared it to balance speed and torque well. 
+
+And for steering, we’re using a servo-based steering mechanism. Two servos are directly connected to the front wheels, rotating the wheels mechanically. This gives us smooth and responsive real-angle steering, instead of relying on differential wheel speeds. It’s way more precise and especially useful for tasks like tight maneuvers and parallel parking.
 
 ---
 
