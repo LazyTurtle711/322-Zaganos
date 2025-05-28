@@ -20,11 +20,11 @@ Repository of *322-ZAĞANOS* competing in the **World Robot Olympiad (WRO) 2025*
 
 ## 👥 The Team <a id="the-team"></a>
 
-| Name            | Age    | School / Institution | Role   |
-| --------------- | ------ | -------------------- | ------ |
-| Rüzgar Yılmaz   | 16 | İzmir Bahçeşehir 50. Yıl Fen ve Teknology Lisesi | Electronics |
-| Emir Gündoğan   | 16 | İzmir Bahçeşehir 50. Yıl Fen ve Teknology Lisesi | Coding |
-| Deha Bora Çelik | 16 | İzmir Bahçeşehir 50. Yıl Fen ve Teknology Lisesi | Mechanics (CAD) |
+| Name            | Age | School / Institution                             | Role            |
+| --------------- | --- | ------------------------------------------------ | --------------- |
+| Rüzgar Yılmaz   | 16  | İzmir Bahçeşehir 50. Yıl Fen ve Teknology Lisesi | Electronics     |
+| Emir Gündoğan   | 16  | İzmir Bahçeşehir 50. Yıl Fen ve Teknology Lisesi | Coding          |
+| Deha Bora Çelik | 16  | İzmir Bahçeşehir 50. Yıl Fen ve Teknology Lisesi | Mechanics (CAD) |
 
 ---
 
@@ -44,8 +44,6 @@ The **WRO 2025 Future Engineers** challenge requires developing a **fully autono
 ---
 
 ## 🤖 Our Robot <a id="our-robot"></a>
-
-<!-- Insert photos here -->
 
 **Controller:** Raspberry Pi 5
 **Vision Sensor:** PixyCam v2 for color detection
@@ -77,17 +75,55 @@ The **WRO 2025 Future Engineers** challenge requires developing a **fully autono
 
 ## 📝 Obstacle Management <a id="obstacle-management"></a>
 
-### Open Round
+### 🏁 Open Round
 
-* **Navigation:** \_\_\_
-* **Line Detection Logic:** \_\_\_
-* **Control Algorithm:** \_\_\_
+During the Open Round, the robot uses side-mounted ultrasonic sensors on servo motors to determine the appropriate turning direction based on the presence of obstacles. The logic is simple: if there is no obstacle on one side, the robot turns in that direction.
 
-### Final Round
+#### 🔎 Turn Decision Logic
 
-* **Obstacle Adaptation:** \_\_\_
-* **Speed Control:** \_\_\_
-* **Parking Strategy:** \_\_\_
+```python
+leftDistance = get_distance(UltrasonicL)
+rightDistance = get_distance(UltrasonicR)
+
+if leftDistance > 200:
+    turnLeft()
+elif rightDistance > 200:
+    turnRight()
+else:
+    goStraight()
+```
+
+This ensures the robot follows a dynamic, obstacle-avoiding trajectory while maintaining consistent navigation throughout the randomized layout.
+
+### 🚧 Obstacle Round
+
+In the Obstacle Round, the robot performs all visual processing using a Pixy2 camera to detect traffic signs (red or green pillars). The camera returns object data in the following format:
+
+```python
+block_info = {
+    'signature': self.blocks[index].m_signature,  # Color ID (1-7)
+    'x': self.blocks[index].m_x,                  # X-coordinate of the block center
+    'y': self.blocks[index].m_y,                  # Y-coordinate of the block center
+    'width': self.blocks[index].m_width,          # Width of the block
+    'height': self.blocks[index].m_height,        # Height of the block
+    'angle': self.blocks[index].m_angle,          # Orientation (if applicable)
+    'index': self.blocks[index].m_index,          # Pixy tracking ID
+    'age': self.blocks[index].m_age               # Number of frames tracked
+}
+```
+
+### 🧭 Steering Control via Object Tracking
+
+The robot aligns itself with the detected object by comparing its X-coordinate (`block["x"]`) to a defined `target_x`. Both servos are adjusted accordingly to steer:
+
+```python
+error = target_x - block["x"]
+angle = map(error, -max_deviation, max_deviation, LEFT_SERVO_MAX, RIGHT_SERVO_MIN)
+kit.servo[left_servo].angle = angle
+kit.servo[right_servo].angle = angle
+```
+
+This mechanism enables the robot to stay on course and follow the traffic rules defined by pillar colors.
 
 ---
 
