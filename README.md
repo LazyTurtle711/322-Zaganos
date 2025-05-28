@@ -90,7 +90,7 @@ This bottom layer includes:
 
 This second layer includes:
 
-*Our PDH
+* Our PDH
 * A prototype perfboard for expansion
 * All of our electronics
 
