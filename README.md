@@ -44,10 +44,28 @@ The **WRO 2025 Future Engineers** challenge requires developing a **fully autono
 ---
 
 ## 🤖 Our Robot <a id="our-robot"></a>
+**Controller:**  
+We use a **Raspberry Pi 5** for all processing, including sensor fusion, control, and computer vision tasks.
 
-**Controller:** Raspberry Pi 5
-**Vision Sensor:** PixyCam v2 for color detection
-**Filament Used:** 1 kg PLA for 3D prints
+**Vision Sensor:**  
+**PixyCam v2** is our key component for detecting colored traffic signs. It allows fast and accurate lane decisions, making it vital for obstacle challenge and direction changes.
+
+**Filament Used:**  
+Our chassis and custom mounts were fully 3D-printed using approximately **1 kg of PLA**.
+
+**Steering System:**  
+Two synchronized **servo motors** handle front-wheel steering, ensuring smooth directional control—especially useful in tasks like parallel parking.
+
+**Motion Control:**  
+A single motor with **ESC** is used for forward/backward movement only, following competition constraints.
+
+**Sensors:**  
+- Dual **ultrasonic sensors** on servos detect obstacles on the sides.  
+- **MPU6050 gyro** helps the robot stay aligned after each maneuver.  
+- **ADS1115 ADC** reads servo positions for dynamic adjustment.
+
+This setup gives us precise obstacle handling and reliable performance in autonomous driving challenges.
+
 
 ---
 
