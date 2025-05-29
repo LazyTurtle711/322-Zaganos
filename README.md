@@ -195,18 +195,18 @@ This mechanism enables the robot to stay on course and follow the traffic rules 
 
 | Component         | Quantity | Unit Price (\$) | Total (\$) |
 | ----------------- | -------- | --------------- | ---------- |
-| Raspberry Pi 5    | 1        | \_\_\_          | \_\_\_     |
-| PixyCam v2        | 1        | \_\_\_          | \_\_\_     |
-| 3D Filament (PLA) | 1 kg     | \_\_\_          | \_\_\_     |
-| Battery           | 1        | \_\_\_          | \_\_\_     |
-| Voltage Regulator | 1        | \_\_\_          | \_\_\_     |
-| Mosfet            | 1        | \_\_\_          | \_\_\_     |
-| ESC               | 1        | \_\_\_          | \_\_\_     |
-| Motor             | 1        | \_\_\_          | \_\_\_     |
-| Gyro              | 1        | \_\_\_          | \_\_\_     |
-| Servo             | 7        | \_\_\_          | \_\_\_     |
-| Servo Driver      | 1        | \_\_\_          | \_\_\_     |
-| ADC               | 4        | \_\_\_          | \_\_\_     |
+| Raspberry Pi 5    | 1        | 102.22$         | 102.22$    |
+| PixyCam v2        | 1        | 110.37$         | 110.37$    |
+| 3D Filament (PETG)| 1 kg     | 21.17$          | 21.17$     |
+| Battery           | 1        | 52.91$          | 52.91$     |
+| Voltage Regulator | 1        | 2.56$           | 2.56$       |
+| Mosfet            | 1        | 0.64$           | 0.64$       |
+| ESC               | 1        | 48.87$          | 48.87$     |
+| Motor             | 1        | 41.35$          | 41.35$     |
+| Gyro              | 1        | 11.51$          | 11.51$     |
+| Servo             | 7        | 3.72$           | 26.04$     |
+| Servo Driver      | 1        | 4.13$           | 4.13$      |
+| ADC               | 4        | 2.39$           | 9.56$      |
 | **Total**         |          |                 | **\_\_\_** |
 
 ---
