@@ -51,7 +51,7 @@ We use a **Raspberry Pi 5** for all processing, including sensor fusion, control
 **PixyCam v2** is our key component for detecting colored traffic signs. It allows fast and accurate lane decisions, making it vital for obstacle challenge and direction changes.
 
 **Filament Used:**  
-Our chassis and custom mounts were fully 3D-printed using approximately **1 kg of PLA**.
+Our chassis and custom mounts were fully 3D-printed using approximately **1 kg of PETG**.
 
 **Steering System:**  
 Two synchronized **servo motors** handle front-wheel steering, ensuring smooth directional control—especially useful in tasks like parallel parking.
@@ -90,7 +90,7 @@ This bottom layer includes:
 
 This second layer includes:
 
-* Our Voltage Regulator
+* 5V 3A Voltage Regulator
 * A prototype perfboard for expansion
 * All of our electronics
 
@@ -98,14 +98,14 @@ This second layer includes:
 
 This third layer includes:
 
-* Our Raspberry Pi 5 runs the high-level code and processes image data
+* Raspberry Pi 5 runs the high-level code and processes image data
 * The Pixy2 camera is mounted with a servo here for top-view vision
-* Our servo controller 
-* The DC motors ESC
+* Servo controller 
+* ESC
 
 🚗 Drivetrain
 
-We are using a high-torque brushed DC motor (you’ll see it in the back, with the red end cap). Power goes through a gear reduction system and is transferred using bevel and spur gears. It drives both front and rear wheels via shafts, so it’s a kind of 4-wheel-drive layout. The drivetrain is compact, and we’ve geared it to balance speed and torque well. 
+We are using a high-torque brushless DC motor (you’ll see it in the back, with the red end cap). Power goes through a custom planetary gear reduction system and is transferred using bevel and spur gears. It drives both front and rear wheels via shafts, so it’s a kind of 4-wheel-drive layout. The drivetrain is compact, and we’ve geared it to balance speed and torque well. 
 
 And for steering, we’re using a servo-based steering mechanism. Two servos are directly connected to the front wheels, rotating the wheels mechanically. This gives us smooth and responsive real-angle steering, instead of relying on differential wheel speeds. It’s way more precise and especially useful for tasks like tight maneuvers and parallel parking.
 
@@ -115,17 +115,19 @@ And for steering, we’re using a servo-based steering mechanism. Two servos are
 
 | Component         | Specification         | Function                      |
 | ----------------- | --------------------- | ----------------------------- |
-| Raspberry Pi 5    | 8 GB RAM, 1.8 GHz CPU | Main controller               |
-| PixyCam v2        | 60 FPS, color-based   | Traffic sign detection |
-| Battery           | 2S 5000mAh 60C Li-Po                | Supplies vehicle with 7.4V                        |
-| Voltage Regulator | LM2596 5V 3A step-down voltage regulator              | Provides 5V to logic level components                        |
-| Mosfet          | IRLZ44N                | Turns the ESC on/off                       |
-| ESC           | Quicrun 10BL60 G2 60amp ESC                | Allows control over the motor with RPI 5                        |
-| Motor           | Quicrun 3660SL-3700KV-D5.0-G2                | Provides power to wheels                        |
-| ADC           | ADS1115               | Allows analog inputs                        |
-| Gyro           | MPU6050                | Provides rotational data                        |
-| Servo           | MG90S               | Allows high-precision control over robot                        |
-| Servo Driver           | PCA9685               | Allows control over multiple servos                        |
+| Raspberry Pi 5 | 8 GB RAM, 1.8 GHz CPU | Main controller |
+| PixyCam v2 | 60 FPS, color-based   | Traffic sign detection |
+| Battery | 2S 5000mAh 60C Li-Po | Supplies vehicle with 7.4V |
+| Voltage Regulator | LM2596 5V 3A step-down voltage regulator | Provides 5V to logic level components |
+| Mosfet | IRLZ44N | Turns the ESC on/off |
+| ESC | Quicrun 10BL60 G2 60amp ESC | Allows control over the motor with RPI 5 |
+| Motor | Quicrun 3660SL-3700KV-D5.0-G2 | Provides power to wheels |
+| ADC | ADS1115 | Allows analog inputs |
+| Gyro | MPU6050 | Provides rotational data |
+| Servo | MG90S | Allows high-precision control over robot |
+| Servo Driver | PCA9685 | Allows control over multiple servos |
+
+![Schematic.png](schemes/Schematic.png)
 
 ---
 
