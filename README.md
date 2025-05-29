@@ -216,7 +216,7 @@ This mechanism enables the robot to stay on course and follow the traffic rules 
 
 ---
 
-⚠️ Reflections & Improvements <a id="reflections-and-improvements"></a>
+## ⚠️ Reflections & Improvements <a id="reflections-and-improvements"></a>
 In this section, we reflect on the challenges, design flaws, and execution errors we encountered during development and testing. We also propose concrete improvements for future iterations.
 
 🔧 Key Mistakes & Lessons Learned
