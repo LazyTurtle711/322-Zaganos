@@ -20,13 +20,13 @@ Repository of *322-ZAĞANOS* competing in the **World Robot Olympiad (WRO) 2025*
 
 ## 👥 The Team <a id="the-team"></a>
 
-![Team.png]()
+![Team.png](t-photos/t-photo1.jpg)
 
 | Name            | Age | School / Institution                             | Role            |
 | --------------- | --- | ------------------------------------------------ | --------------- |
-| Rüzgar Yılmaz   | 16  | İzmir Bahçeşehir 50. Yıl Fen ve Teknology Lisesi | Electronics     |
-| Emir Gündoğan   | 16  | İzmir Bahçeşehir 50. Yıl Fen ve Teknology Lisesi | Coding          |
-| Deha Bora Çelik | 16  | İzmir Bahçeşehir 50. Yıl Fen ve Teknology Lisesi | Mechanics (CAD) |
+| Rüzgar Yılmaz (middle)   | 16  | İzmir Bahçeşehir 50. Yıl Fen ve Teknology Lisesi | Electronics     |
+| Emir Gündoğan (right)   | 16  | İzmir Bahçeşehir 50. Yıl Fen ve Teknology Lisesi | Coding          |
+| Deha Bora Çelik (left) | 16  | İzmir Bahçeşehir 50. Yıl Fen ve Teknology Lisesi | Mechanics (CAD) |
 
 ---
 
