@@ -207,7 +207,7 @@ This mechanism enables the robot to stay on course and follow the traffic rules 
 | Servo             | 7        | 3.72$           | 26.04$     |
 | Servo Driver      | 1        | 4.13$           | 4.13$      |
 | ADC               | 4        | 2.39$           | 9.56$      |
-| **Total**         |          |                 | **\_\_\_** |
+| **Total**         |          |                 | **431.33$** |
 
 ---
 
