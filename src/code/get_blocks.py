@@ -2,10 +2,10 @@ from __future__ import print_function  # Ensures compatibility with Python 2 and
 import pixy  # Import the Pixy2 camera library
 from ctypes import *  # Import C types for working with the C-based Pixy library
 from pixy import *  # Import all symbols from pixy module
-
+import math
 
 class PixyCam():
-    def __init__(self, max_blocks=5):
+    def __init__(self, max_blocks=3):
         """
         Initialize the Pixy2 camera wrapper class.
 
@@ -29,6 +29,42 @@ class PixyCam():
 
         # Store the maximum number of blocks to detect
         self.max_count = max_blocks
+
+    def merge_close_blocks(self, blocks, max_distance=50):
+        merged = []
+        # signature’a göre grupla
+        sig_groups = {}
+        for b in blocks:
+            sig_groups.setdefault(b['signature'], []).append(b)
+        
+        for sig, grp in sig_groups.items():
+            clusters = []
+            for blk in grp:
+                placed = False
+                for cluster in clusters:
+                    cx = sum(b['x'] for b in cluster) / len(cluster)
+                    cy = sum(b['y'] for b in cluster) / len(cluster)
+                    dist = math.hypot(blk['x'] - cx, blk['y'] - cy)
+                    if dist <= max_distance:
+                        cluster.append(blk)
+                        placed = True
+                        break
+                if not placed:
+                    clusters.append([blk])
+
+            for cluster in clusters:
+                count = len(cluster)
+                merged.append({
+                    'signature': sig,
+
+                    'x': sum(b['x'] for b in cluster) / count,
+                    'y': sum(b['y'] for b in cluster) / count,
+
+                    'width': max(b['x'] + b['width']/2 for b in cluster) - min(b['x'] - b['width']/2 for b in cluster),
+                    'height': max(b['y'] + b['height']/2 for b in cluster) - min(b['y'] - b['height']/2 for b in cluster),
+                    'count': count  
+                })
+        return merged
 
     def get_blocks(self):
         """
@@ -68,6 +104,10 @@ class PixyCam():
         # Sort blocks by their signature (color ID) for easier processing
         # This makes it easier to find all blocks of a specific color
         self.block_data.sort(key=lambda b: b['signature'])
+        
+        merged = self.merge_close_blocks(self.block_data, 10)
+
+        return merged
 
         # The calling code can access self.block_data to get the detected objects
 
