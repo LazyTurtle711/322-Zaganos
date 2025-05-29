@@ -20,6 +20,8 @@ Repository of *322-ZAĞANOS* competing in the **World Robot Olympiad (WRO) 2025*
 
 ## 👥 The Team <a id="the-team"></a>
 
+![Team.png]()
+
 | Name            | Age | School / Institution                             | Role            |
 | --------------- | --- | ------------------------------------------------ | --------------- |
 | Rüzgar Yılmaz   | 16  | İzmir Bahçeşehir 50. Yıl Fen ve Teknology Lisesi | Electronics     |
