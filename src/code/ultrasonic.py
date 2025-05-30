@@ -1,54 +1,39 @@
-#!/usr/bin/env python
-# from gpiozero import DistanceSensor
-import time
-import sys
-import signal
-
-def signal_handler(signal, frame):
-    print('You pressed Ctrl+C!')
-    sys.exit(0)
-
-signal.signal(signal.SIGINT, signal_handler)
-
-# echo = 17, trig = 27
-# DistanceSensor(echo=17, trigger=27, max_distance=2.0)  # max 2 meters
-
-def getDistance(sensor):
-    # time.sleep(0.5)
-    # print('sonar start')
-
-    distance = sensor.distance * 100  # convert to cm
-    if distance == 0 or distance > 300:
-        print('out of range')
-        return None
-    else:
-        print('Distance : %.3f cm' % distance)
-        return distance
-    # time.sleep(0.1)
-    
-    
-'''
 import RPi.GPIO as gpio
 import time
-import sys
-import signal
 
-def signal_handler(signal, frame): # ctrl + c -> exit program
-        print('You pressed Ctrl+C!')
-        sys.exit(0)
-signal.signal(signal.SIGINT, signal_handler)
+class Ultras:
+    def __init__(self, pins):
+        self.pins = pins
+        gpio.setmode(gpio.BCM)
+        
+        self.frontEcho = self.pins["front"][0]
+        self.frontTrig = self.pins["front"][1]
+        gpio.setup(self.frontEcho, gpio.IN)
+        gpio.setup(self.frontTrig, gpio.OUT)
+        
+        self.leftEcho = self.pins["left"][0]
+        self.leftTrig = self.pins["left"][1]
+        gpio.setup(self.leftEcho, gpio.IN)
+        gpio.setup(self.leftTrig, gpio.OUT)
+        
+        self.rightEcho = self.pins["right"][0]
+        self.rightTrig = self.pins["right"][1]
+        gpio.setup(self.rightEcho, gpio.IN)
+        gpio.setup(self.rightTrig, gpio.OUT)
+        
+        self.backEcho = self.pins["back"][0]
+        self.backTrig = self.pins["back"][1]
+        gpio.setup(self.backEcho, gpio.IN)
+        gpio.setup(self.backTrig, gpio.OUT)
 
-gpio.setmode(gpio.BCM)
-trig = 27 # 7th
-echo = 17 # 6th
-
-gpio.setup(trig, gpio.OUT)
-gpio.setup(echo, gpio.IN)
-
-time.sleep(0.5)
-print ('-----------------------------------------------------------------sonar start')
-try :
-    while True :
+        # time.sleep(0.5)
+        
+    def getDistance(self, ultra):
+        pulse_start = pulse_end = 0
+        
+        echo = self.pins[ultra][0]
+        trig = self.pins[ultra][1]
+        
         gpio.output(trig, False)
         time.sleep(0.1)
         gpio.output(trig, True)
@@ -61,17 +46,31 @@ try :
         pulse_duration = pulse_end - pulse_start
         distance = pulse_duration * 17000
         if pulse_duration >=0.01746:
-            print('time out')
-            continue
-        elif distance > 300 or distance==0:
-            print('out of range')
-            continue
+            print("timeout")
+            return None
+        elif distance > 200 or distance==0:
+            print("out of range")
+            return 200
         distance = round(distance, 3)
-        print ('Distance : %f cm'%distance)
+        print (f"{ultra} distance: {distance}")
+        return distance
+        
+    def exit(self):
+        gpio.cleanup()
+        # sys.exit(0)
+        
 
-except (KeyboardInterrupt, SystemExit):
-    gpio.cleanup()
-    sys.exit(0)
-except:
-    gpio.cleanup()
-'''
+if __name__ == "__main__":
+    ultraPins = { # Echo, Trigger
+        "front": [5, 7],
+        "left": [6, 24],
+        "right": [13, 23],
+        "back": [19, 8]
+    }
+    
+    ult = Ultras(ultraPins)
+    try:
+        while True:
+            ult.getDistance("left")
+    except KeyboardInterrupt:
+        ult.exit()

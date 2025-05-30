@@ -1,4 +1,5 @@
 from gpiozero import PWMOutputDevice  # Import PWM output for controlling ESC
+from gpiozero import DigitalOutputDevice
 from time import sleep  # For implementing delays
 
 
@@ -15,16 +16,12 @@ class ESC:
         # Create a PWM output device on the specified pin with the specified frequency
         # This will generate the control signal for the ESC
         self.device = PWMOutputDevice(esc_pin, frequency=freq)
+        self.set_throttle(1.5)
+        mosfet = DigitalOutputDevice(14)
+        mosfet.on()
+        
         print(f"ESC initialized! Pin: {esc_pin} Frequency: {freq}")
-
-        # Initial arming sequence - these specific pulses help initialize the ESC
-        # First send a full forward signal (1ms pulse)
-        self.set_throttle(1, False)
-        sleep(0.04)  # Short delay between signals
-
-        # Then send a full reverse signal (2ms pulse)
-        self.set_throttle(2, False)
-        sleep(0.04)  # Short delay after initialization
+        # Short delay after initialization
 
     def set_throttle(self, pulse_ms, out=True):
         """
@@ -73,14 +70,14 @@ class ESC:
         sleep(3)  # Wait for ESC to register neutral position
 
         # Step 2: Set to full forward (2ms pulse)
-        self.set_throttle(2)
+        self.set_throttle(1.6)
         print("2")
         sleep(3)  # Wait for ESC to register full forward
 
         # Step 3: Set to full reverse/brake (1ms pulse)
-        self.set_throttle(1)
-        print("3")
-        sleep(3)  # Wait for ESC to register full reverse/brake
+       # self.set_throttle(1)
+        #print("3")
+        #sleep(3)  # Wait for ESC to register full reverse/brake
 
 if __name__ == '__main__':
     # Create a new ESC object
@@ -88,3 +85,4 @@ if __name__ == '__main__':
 
     # Start the ESC calibration
     esc.calibrate()
+

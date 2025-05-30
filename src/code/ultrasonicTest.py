@@ -26,6 +26,8 @@ def get_distance():
     time.sleep(0.00001)  # 10 µs pulse
     GPIO.output(TRIG, False)
 
+    pulse_start = pulse_end = 0
+
     # Echo start
     while GPIO.input(ECHO) == 0:
         pulse_start = time.time()
