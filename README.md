@@ -14,19 +14,20 @@ Repository of *322-ZAĞANOS* competing in the **World Robot Olympiad (WRO) 2025*
 * [📝 Obstacle Management](#obstacle-management)
 * [📽️ Performance Videos](#performance-videos)
 * [💰 Cost Analysis](#cost-analysis)
-* [📂 Resources](#resources)
+* [⚠️ Reflection and Improvements](#reflections-and-improvements)
+* [📂 Resources](#resources) 
 
 ---
 
 ## 👥 The Team <a id="the-team"></a>
 
-![Team.png]()
+![Team.png](t-photos/t-photo1.jpg)
 
 | Name            | Age | School / Institution                             | Role            |
 | --------------- | --- | ------------------------------------------------ | --------------- |
-| Rüzgar Yılmaz   | 16  | İzmir Bahçeşehir 50. Yıl Fen ve Teknology Lisesi | Electronics     |
-| Emir Gündoğan   | 16  | İzmir Bahçeşehir 50. Yıl Fen ve Teknology Lisesi | Coding          |
-| Deha Bora Çelik | 16  | İzmir Bahçeşehir 50. Yıl Fen ve Teknology Lisesi | Mechanics (CAD) |
+| Rüzgar Yılmaz (middle)   | 16  | İzmir Bahçeşehir 50. Yıl Fen ve Teknology Lisesi | Electronics     |
+| Emir Gündoğan (right)   | 16  | İzmir Bahçeşehir 50. Yıl Fen ve Teknology Lisesi | Coding          |
+| Deha Bora Çelik (left) | 16  | İzmir Bahçeşehir 50. Yıl Fen ve Teknology Lisesi | Mechanics (CAD) |
 
 ---
 
@@ -212,6 +213,20 @@ This mechanism enables the robot to stay on course and follow the traffic rules 
 | Servo Driver      | 1        | 4.13$           | 4.13$      |
 | ADC               | 4        | 2.39$           | 9.56$      |
 | **Total**         |          |                 | **431.33$** |
+
+---
+
+## ⚠️ Reflections & Improvements <a id="reflections-and-improvements"></a>
+In this section, we reflect on the challenges, design flaws, and execution errors we encountered during development and testing. We also propose concrete improvements for future iterations.
+
+🔧 Key Mistakes & Lessons Learned
+| Issue             | Description                                                                                                                           | Proposed Improvement                                                                                      |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| Overpowered Motor | The brushless motor we initially selected had excessive torque and RPM, making it difficult to control at low speeds.                 | Use a lower-KV, sensored motor better suited for precision and control in autonomous driving.             |
+| Weight & Size     | The motor's weight increased the center of mass, affecting stability, and required a large 2-stage planetary gearbox to reduce speed. | Choose a more compact motor with balanced torque output to reduce size and simplify the drivetrain.       |
+| Gearbox Footprint | The custom gearbox occupies a large portion of the chassis and limited our design flexibility.                                        | Redesign drivetrain layout with modularity in mind; consider belt-driven or simpler reduction mechanisms. |
+
+These mistakes guided us to focus more on practical motor sizing, efficient mechanical design, and weight distribution for better control and future upgrades.
 
 ---
 
