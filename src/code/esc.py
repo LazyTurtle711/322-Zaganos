@@ -16,9 +16,13 @@ class ESC:
         # Create a PWM output device on the specified pin with the specified frequency
         # This will generate the control signal for the ESC
         self.device = PWMOutputDevice(esc_pin, frequency=freq)
+        self.mosfet = DigitalOutputDevice(14)
+        self.mosfet.off()
         self.set_throttle(1.5)
-        mosfet = DigitalOutputDevice(14)
-        mosfet.on()
+        sleep(0.5)
+        self.mosfet.on()
+        self.set_throttle(1.5)
+        sleep(2.5)
         
         print(f"ESC initialized! Pin: {esc_pin} Frequency: {freq}")
         # Short delay after initialization
@@ -80,9 +84,10 @@ class ESC:
         #sleep(3)  # Wait for ESC to register full reverse/brake
 
 if __name__ == '__main__':
-    # Create a new ESC object
     esc = ESC(esc_pin=26, freq=50)
 
-    # Start the ESC calibration
-    esc.calibrate()
+
+    esc.set_throttle(1.6)
+    sleep(2)
+    
 

@@ -1,73 +1,56 @@
-import RPi.GPIO as gpio
+from gpiozero import DistanceSensor
+from adafruit_servokit import ServoKit
 import time
 
 class Ultras:
     def __init__(self, pins):
+        self.prevDistance = 0
         self.pins = pins
-        gpio.setmode(gpio.BCM)
-        
-        self.frontEcho = self.pins["front"][0]
-        self.frontTrig = self.pins["front"][1]
-        gpio.setup(self.frontEcho, gpio.IN)
-        gpio.setup(self.frontTrig, gpio.OUT)
-        
-        self.leftEcho = self.pins["left"][0]
-        self.leftTrig = self.pins["left"][1]
-        gpio.setup(self.leftEcho, gpio.IN)
-        gpio.setup(self.leftTrig, gpio.OUT)
-        
-        self.rightEcho = self.pins["right"][0]
-        self.rightTrig = self.pins["right"][1]
-        gpio.setup(self.rightEcho, gpio.IN)
-        gpio.setup(self.rightTrig, gpio.OUT)
-        
-        self.backEcho = self.pins["back"][0]
-        self.backTrig = self.pins["back"][1]
-        gpio.setup(self.backEcho, gpio.IN)
-        gpio.setup(self.backTrig, gpio.OUT)
+        self.kit = ServoKit(channels=16)
 
-        # time.sleep(0.5)
-        
+        self.sensors = {
+            "front": DistanceSensor(echo=pins["front"][0], trigger=pins["front"][1], max_distance=2.0),
+            "left": DistanceSensor(echo=pins["left"][0], trigger=pins["left"][1], max_distance=2.0),
+            "right": DistanceSensor(echo=pins["right"][0], trigger=pins["right"][1], max_distance=2.0),
+            "back": DistanceSensor(echo=pins["back"][0], trigger=pins["back"][1], max_distance=2.0),
+        }
+
     def getDistance(self, ultra):
-        pulse_start = pulse_end = 0
-        
-        echo = self.pins[ultra][0]
-        trig = self.pins[ultra][1]
-        
-        gpio.output(trig, False)
-        time.sleep(0.1)
-        gpio.output(trig, True)
-        time.sleep(0.00001)
-        gpio.output(trig, False)
-        while gpio.input(echo) == 0 :
-            pulse_start = time.time()
-        while gpio.input(echo) == 1 :
-            pulse_end = time.time()
-        pulse_duration = pulse_end - pulse_start
-        distance = pulse_duration * 17000
-        if pulse_duration >=0.01746:
-            print("timeout")
-            return None
-        elif distance > 200 or distance==0:
-            print("out of range")
+        distance = self.sensors[ultra].distance * 100  # convert to cm
+        if distance == 0 or distance > 200:
+            print(f"{ultra} out of range")
             return 200
         distance = round(distance, 3)
-        print (f"{ultra} distance: {distance}")
+        print(f"{ultra} distance: {distance} cm")
+        self.prevDistance = distance
         return distance
-        
+
     def exit(self):
-        gpio.cleanup()
-        # sys.exit(0)
-        
+        # gpiozero cleans up automatically, but you can define this if needed
+        pass
+
+    def getAvgDistance(self, ultra, times=3):
+        distances = []
+        for _ in range(times):
+            distances.append(self.getDistance(ultra))
+            time.sleep(0.05)
+        return sum(distances) / len(distances)
+
+    def getPos(self):
+        return self.getAvgDistance("left") - self.getAvgDistance("right")
+
+    def goto(self, pos):
+        error = pos - self.getPos()
+        # implement control logic here
 
 if __name__ == "__main__":
-    ultraPins = { # Echo, Trigger
-        "front": [5, 7],
-        "left": [6, 24],
-        "right": [13, 23],
-        "back": [19, 8]
+    ultraPins = {  # echo, trigger
+        "front": (5, 7),
+        "left": (6, 24),
+        "right": (13, 23),
+        "back": (19, 8)
     }
-    
+
     ult = Ultras(ultraPins)
     try:
         while True:
