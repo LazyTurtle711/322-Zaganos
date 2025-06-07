@@ -95,10 +95,10 @@ class AutonomousCar:
                 return (target_yaw - current + 540) % 360 - 180
 
 
-        K = 4
+        K = 5
         MIN_A, MAX_A = 60, 120
-        DEAD_BAND = 0.5
-        TARGET_THRESH = 1.0
+        DEAD_BAND = 0.35
+        TARGET_THRESH = 0.79
 
         # Hedefe ulaşana dek servo yönlendirme ve sürekli motor ileri
         while True:
@@ -170,5 +170,6 @@ if __name__ == "__main__":
     car = AutonomousCar()
     while not car.button.is_pressed:
         pass
+    time.sleep(1.5)
     car.run()
 #(-20 right) + left
